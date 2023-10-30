@@ -221,27 +221,11 @@ console.log(window.color); // 'Red'
 
 Function context:
 
-- [1. String interpolation](#1-string-interpolation)
-- [2. For-loop](#2-for-loop)
-- [3. let vs var vs const](#3-let-vs-var-vs-const)
-  - [3.1. Variable hoisting](#31-variable-hoisting)
-  - [3.2. var](#32-var)
-  - [3.3. let](#33-let)
-  - [3.4. const](#34-const)
-  - [3.5. Sources](#35-sources)
-- [4. Spread operator](#4-spread-operator)
-  - [4.1. Function arguments list](#41-function-arguments-list)
-  - [4.2. Array literals](#42-array-literals)
-  - [4.3. Object literals](#43-object-literals)
-- [5. This](#5-this)
-  - [5.1. Function invocation](#51-function-invocation)
-  - [5.2. Method invocation](#52-method-invocation)
-  - [5.3. Constructor invocation](#53-constructor-invocation)
-  - [5.4. Indirect invocation](#54-indirect-invocation)
-  - [5.5. Arrow functions](#55-arrow-functions)
-- [6. Closures](#6-closures)
-  - [6.1. Lexical scoping](#61-lexical-scoping)
-  - [6.2. Closure](#62-closure)
+- [5.1. Function invocation](#51-function-invocation)
+- [5.2. Method invocation](#52-method-invocation)
+- [5.3. Constructor invocation](#53-constructor-invocation)
+- [5.4. Indirect invocation](#54-indirect-invocation)
+- [5.5. Arrow functions](#55-arrow-functions)
 
 ## 5.1. Function invocation
 
