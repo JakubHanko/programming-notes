@@ -1,4 +1,38 @@
-## Adding TS to existing solution
+- [1. Adding TS to existing solution](#1-adding-ts-to-existing-solution)
+  - [1.1. Declaration files](#11-declaration-files)
+    - [1.1.1. Installing third-party types](#111-installing-third-party-types)
+- [2. Basic type usage](#2-basic-type-usage)
+  - [2.1. Primitive types](#21-primitive-types)
+    - [2.1.1. Unknown type](#211-unknown-type)
+    - [2.1.2. Null vs undefined](#212-null-vs-undefined)
+    - [2.1.3. Never type](#213-never-type)
+  - [2.2. Custom types](#22-custom-types)
+  - [2.3. Type aliases](#23-type-aliases)
+  - [2.4. Enumerable types](#24-enumerable-types)
+  - [2.5. Functions](#25-functions)
+    - [2.5.1. Destructuring return types](#251-destructuring-return-types)
+    - [2.5.2. Function expressions](#252-function-expressions)
+  - [2.6. Generics](#26-generics)
+    - [2.6.1. Generic functions](#261-generic-functions)
+    - [2.6.2. Generic constraint](#262-generic-constraint)
+    - [2.6.3. Generic interfaces](#263-generic-interfaces)
+- [3. More complex type usage](#3-more-complex-type-usage)
+  - [3.1. Union types](#31-union-types)
+  - [3.2. Keyof operator](#32-keyof-operator)
+  - [3.3. Typeof operator](#33-typeof-operator)
+  - [3.4. Indexed access types](#34-indexed-access-types)
+  - [3.5. Records](#35-records)
+    - [3.5.1. Record type modifiers](#351-record-type-modifiers)
+  - [3.6. Mapped type](#36-mapped-type)
+- [4. Decorators](#4-decorators)
+  - [4.1. Method decorator](#41-method-decorator)
+  - [4.2. Class decorator](#42-class-decorator)
+  - [4.3. Property decorator](#43-property-decorator)
+  - [4.4. Modules](#44-modules)
+- [5. Sources](#5-sources)
+
+
+# 1. Adding TS to existing solution
 
 1. Add **tsconfig.json** file to the solution
 
@@ -23,7 +57,7 @@
   * **outDir** - folder where the transpiled files will be generated.
   * **noEmit** - if set to true, no output is generated. Useful if you want only type checking.
 
-2. Run TS compiler
+2. Run TS compiler:
    
 ```bash
 tsc
@@ -31,17 +65,49 @@ tsc
 
 This compiles everything in the scope of the project into **.ts** counterparts -- the so-called transpilation.
 
+---
 
-### Installing third-party types
+For a full list of compiler options run:
+```sh
+tsc --all
+```
+
+To initialize the TS project, run:
+
+```sh
+tsc --init
+```
+which creates `tsconfig.json` with the most commonly used option. The rest of the options are commented out.
+
+To execute the `.js` file in the Node environment, run:
+```sh
+node file.js
+```
+
+To execute the `.ts` without compilation, run:
+
+```sh
+npx ts-node <.ts file>
+```
+
+
+## 1.1. Declaration files
+
+With the declaration files, TypeScript informs the text editor of the requirements for every function that a library has.Declaration files are completely bypassed when it comes to what is rendered in the program.
+
+### 1.1.1. Installing third-party types
 
 1. Search for **@types** at npmjs.com
 2. Execute the installation in the root of the folder
+   ```sh
+   npm install @types/<lib>
+   ```
 3. Type declarations are found in the **node_modules/types** folder in the **.d.ts** files
 
 
-## Basic type usage
+# 2. Basic type usage
 
-### Primitive types
+## 2.1. Primitive types
 
 ```typescript
 let x: number
@@ -49,12 +115,43 @@ let y: string
 let z: boolean
 let d: Date
 let a: string[]
+let t: [string, string, number] = ["Ada", "Lovelace", 36]; // tuple
 
 x = "Hello" // Type 'string' is not assignable to type 'number' error
 x = "Hello" as any // Discouraged
 ```
 
-### Custom types
+### 2.1.1. Unknown type
+
+With `unknown`, we don't know whether the variable is of a certain type, therefore we have to explicitly test its type.
+
+```typescript
+const variable: any = getSomeResult() // a hypothetical function with some return value we know nothing about
+const str: string = variable // OK
+
+const variable2: unknown = getSomeResult()
+const str2: string = variable2 // Type 'unknown' is not assignable to type 'string'
+
+if (typeof variable2 == 'string') {
+    const str2: string = variable2 // OK
+}
+```
+
+### 2.1.2. Null vs undefined
+
+`null` has to be specified explicitly. If something is `null`, it is because someone set it to null.
+
+### 2.1.3. Never type
+
+This type represents a value that never occurs.
+
+```typescript
+function notReturning(): never {
+    throw new Error("point of no return");
+}
+```
+
+## 2.2. Custom types
 
 ```typescript
 interface Address {
@@ -77,8 +174,9 @@ let contact: Contact = {
 ```
 
 **Note:** interfaces are only used at compile-tile to provide type checking. They are never available in the runtime code.
+**Note 2:** classes get compiled to JavaScript classes or constructor functions. Otherwise the syntax and the semantics are the same.
 
-### Type aliases
+## 2.3. Type aliases
 
 ```typescript
 type ContactName = string
@@ -86,7 +184,7 @@ type ContactName = string
 
 **Alias** provides an alternate name for an existing type. They can be used interchangeably with the type they alias. They add a little more meaning to the variable they describe.
 
-### Enumerable types
+## 2.4. Enumerable types
 
 ```typescript
 enum ContactStatus {
@@ -102,7 +200,7 @@ By default, enum's values are represented by numbers from 0 upwards. The values 
 
 **Note:** enums do get compiled along with the rest of the code and stay available even at runtime (unlike many other parts of TypeScript syntaxes that get stripped down at compile time).
 
-### Functions
+## 2.5. Functions
 
 ```typescript
 function clone(source: Contact): Contact {
@@ -119,9 +217,54 @@ interface Contact {
 }
 ```
 
-### Generics
+### 2.5.1. Destructuring return types
 
-#### Generic functions
+```typescript
+function paritySort(...numbers: number[]): {
+    evens: number[],
+    odds: number[]
+} {
+    return {
+        evens: numbers.filter(n => n % 2 === 0),
+        odds: numbers.filter(n => n % 2 === 1)
+    };
+}
+
+const { evens, odds } = paritySort(1, 2, 3, 4);
+```
+`evens` and `odds` have to match. `paritySort` is returning a type:
+
+```typescript
+{
+    evens: number[],
+    odds: number[]
+}
+```
+
+therefore, the return type declaration and the actual returned object got to have `evens` and `odds` named exactly the same way.
+
+Destructuring the return value into incorrectly named variables ends with the following error:
+
+```typescript
+const { x, odds } = paritySort(1, 2, 3, 4); // Property 'x' does not exist on type '{ evens: number[]; odds: number[]; }'.
+```
+
+### 2.5.2. Function expressions
+Function expressions differ from function declarations in that they can be assigned to variables, used inline, or invoked immediately – an immediately invoked function expression or IIFE. Function expressions can be named or anonymous.
+
+```typescript
+const myFunction = function(name: string): string {
+    return `Hello ${name}!`;
+}
+
+console.log(myFunction("Jakub"));
+```
+
+The major difference between function expressions and function declarations is that the declarations are hoisted. They can be used before they are declared in code.
+
+## 2.6. Generics
+
+### 2.6.1. Generic functions
 
 ```typescript
 function clone<T>(source: T): T {
@@ -141,7 +284,7 @@ const d = clone<Contact, Contact>(c); // we have to explicitly give the type par
 
 Generic type is a meta type -- a type that represents any other type that you decide to substitute in.
 
-#### Generic constraint
+### 2.6.2. Generic constraint
 
 ```typescript
 function clone<T1, T2 extends T1>(source: T1): T2 { // so-called "generic constraint";
@@ -159,7 +302,7 @@ T2 has to at least match the properties of T1.
 
 **Note 2:** ```{ id: number }``` is a type as well. Therefore the extended type doesn't have to be an explicitly defined type.
 
-#### Generic interfaces
+### 2.6.3. Generic interfaces
 
 ```typescript
 interface UserContact<TExternalId> {
@@ -170,9 +313,9 @@ interface UserContact<TExternalId> {
 }
 ```
 
-## More complex type usage
+# 3. More complex type usage
 
-### Union types
+## 3.1. Union types
 
 ```typescript
 interface Contact {
@@ -187,7 +330,7 @@ type AddressableContact = Contact & Address // combines the two types together
 type ContactStatus = "active" | "inactive" | "new" // alternative to enums
 ```
 
-### Keyof operator
+## 3.2. Keyof operator
 
 keyof is a type operator that takes an object type and produces a string or numeric literal union of its keys. The following type ```P``` is the same type as ```type P = "x" | "y"```:
 
@@ -205,7 +348,7 @@ const value = getValue({ min: 1, max: 200 }, /* you can only put "min" or "max" 
 ```
 
 
-### Typeof operator
+## 3.3. Typeof operator
 
 typeof is a type operator that you can use in a type context to refer to the type of a variable or property.
 
@@ -217,7 +360,7 @@ function save(source: typeof myType) {}
 
 Probably better to use an explicitly created interface. However, this approach could be useful if we are dealing with types that are unknown to us until the runtime.
 
-### Indexed access types
+## 3.4. Indexed access types
 
 ```typescript
 type Person = { age: number; name: string; alive: boolean };
@@ -229,7 +372,7 @@ type AliveOrName = "alive" | "name";
 type I2 = Person[AliveOrName]; // string | boolean
 ```
 
-### Records
+## 3.5. Records
 
 Records are useful if you want to extend the object with properties that were not available at the time of object's initialization. It provides type checking while still retaining some of the flexibility and dynamicism of the ```any``` type.
 
@@ -255,7 +398,7 @@ function searchContacts(contacts: Contact[], query: Record<keyof Contact, Query>
 
 ```keyof Contact``` allows the Record to only have the same properties as Contact.
 
-#### Record type modifiers
+### 3.5.1. Record type modifiers
 
 There exist some utility types (wrappers) that allow us to extend from existing types (like record) but pick and choose which properties to include and exclude in your new type.
 
@@ -273,7 +416,7 @@ type RequiredContactQuery = Required<PartialContactQuery>
 * **Required** - all of the wrapped properties are required
 
 
-### Mapped type
+## 3.6. Mapped type
 
 ```typescript
 interface Query<TProp> {
@@ -288,14 +431,14 @@ type ContactQuery = {
 ```[ ... ]``` is a property indexor syntax. In this case, each Query object has been parametrized by the type of the respective Contact property. We now have full static typing in the query objects.
 
 
-## Decorators
+# 4. Decorators
 
 Metadata that we can add to our classes, methods and even getter and setter properties. On top of that it allows us to extend them with additional functionality -- adding behaviour to code without actually changing the code itself.
 
 For example adding authorization logic or logging to an existing code. If written manually, it could be seen as a noise with no relation to the responsibilities of the respective class/method.
 
 
-### Method decorator
+## 4.1. Method decorator
 
 ```typescript
 function authorize(target: any, property: string, descriptor: PropertyDescriptor) {
@@ -340,7 +483,7 @@ function authorize(role: string) {
 }
 ```
 
-### Class decorator
+## 4.2. Class decorator
 
 ```typescript
 function freeze(constructor: Function) {
@@ -377,7 +520,7 @@ class B {
 
 ```constructor``` is the class's constructor function.
 
-### Property decorator
+## 4.3. Property decorator
 
 ```typescript
 function auditable(target: object, key: string | symbol) {
@@ -406,7 +549,7 @@ class A {
 * ```key``` - name of the property being decorated
  
 
- ## Modules
+ ## 4.4. Modules
 
 Without modules, the contents of the **.js** files are copy-pasted (loaded) into the page source. I.e. the order of the files matters and if we omit one of the files while the other depends on some part of it, our code probably won't work anymore. In case of shadowing, the last file where the object is referenced defines its value/properties.
 
@@ -429,4 +572,8 @@ import { foo } from "./utils" // local path or a name of module
 
 const x = foo();
 ```
+
+# 5. Sources
+* [LinkedIn - Learning TypeScript](https://www.linkedin.com/learning/typescript-essential-training-14687057/learning-typescript?u=42751868)
+* [O'Reilly - The TypeScript Workshop](https://learning.oreilly.com/library/view/the-typescript-workshop/9781838828493/)
 
