@@ -1,12 +1,9 @@
-- [1. f-strings](#1-f-strings)
-  - [1.1. Number formatting](#11-number-formatting)
-  - [1.2. Self-documenting expression](#12-self-documenting-expression)
-  - [1.3. Date formatting](#13-date-formatting)
-  - [1.4. String formatting](#14-string-formatting)
-  - [1.5. Other modifiers](#15-other-modifiers)
-  - [1.6. Caveat with logging](#16-caveat-with-logging)
-  - [1.7. Sources](#17-sources)
-
+```table-of-contents
+style: nestedList # TOC style (nestedList|inlineFirstLevel)
+maxLevel: 0 # Include headings up to the speficied level
+includeLinks: true # Make headings clickable
+debugInConsole: false # Print debug info in Obsidian console
+```
 
 # 1. f-strings
 

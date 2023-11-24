@@ -1,25 +1,9 @@
-- [1. String interpolation](#1-string-interpolation)
-- [2. For-loop](#2-for-loop)
-- [3. let vs var vs const](#3-let-vs-var-vs-const)
-  - [3.1. Variable hoisting](#31-variable-hoisting)
-  - [3.2. var](#32-var)
-  - [3.3. let](#33-let)
-  - [3.4. const](#34-const)
-  - [3.5. Sources](#35-sources)
-- [4. Spread operator](#4-spread-operator)
-  - [4.1. Function arguments list](#41-function-arguments-list)
-  - [4.2. Array literals](#42-array-literals)
-  - [4.3. Object literals](#43-object-literals)
-- [5. This](#5-this)
-  - [5.1. Function invocation](#51-function-invocation)
-  - [5.2. Method invocation](#52-method-invocation)
-  - [5.3. Constructor invocation](#53-constructor-invocation)
-  - [5.4. Indirect invocation](#54-indirect-invocation)
-  - [5.5. Arrow functions](#55-arrow-functions)
-- [6. Closures](#6-closures)
-  - [6.1. Lexical scoping](#61-lexical-scoping)
-  - [6.2. Closure](#62-closure)
-
+```table-of-contents
+style: nestedList # TOC style (nestedList|inlineFirstLevel)
+maxLevel: 0 # Include headings up to the speficied level
+includeLinks: true # Make headings clickable
+debugInConsole: false # Print debug info in Obsidian console
+```
 
 # 1. String interpolation
 
@@ -38,8 +22,8 @@ for (const something of everything) {
 
 # 3. let vs var vs const
 
-
 ## 3.1. Variable hoisting
+
 Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.
 
 This:
@@ -124,7 +108,6 @@ console.log(a); // ReferenceError: Cannot access 'a' before initialization
 let a = 5;
 ```
 
-
 ## 3.4. const
 
 ```const``` just like ```let``` but it cannot be updated. However, in the case of an ```object```, you can update its properties.
@@ -132,15 +115,16 @@ let a = 5;
 ---
 
 ## 3.5. Sources
-* [Var, Let, and Const – What's the Difference?](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/)
+
+- [Var, Let, and Const – What's the Difference?](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/)
 
 # 4. Spread operator
 
 Spread syntax can be used when all elements from an object or array need to be included in a new array or object, or should be applied one-by-one in a function call's arguments list. There are three distinct places that accept the spread syntax:
 
-* [Function arguments list](#function-arguments-list)
-* [Array literals](#array-literals)
-* [Object literals](#object-literals)
+- [Function arguments list](#function-arguments-list)
+- [Array literals](#array-literals)
+- [Object literals](#object-literals)
 
 ## 4.1. Function arguments list
 
@@ -149,7 +133,9 @@ function myFunction(x, y, z) {}
 const args = [0, 1, 2];
 myFunction.apply(null, args);
 ```
+
 vs.
+
 ```javascript
 function myFunction(x, y, z) {}
 const args = [0, 1, 2];
@@ -269,7 +255,9 @@ console.log(brand()); // undefined
 let brand = car.getBrand.bind(car); // bind binds `this` to the instance of car
 console.log(brand()); // Honda
 ```
+
 ---
+
 ## 5.3. Constructor invocation
 
 `this` refers to the newly-created object. However, the constructor has to be invoked by the `new` keyword. Otherwise we are accessing the global object, once again.
@@ -295,6 +283,7 @@ let audi = {
 getBrand.call(honda, "It's a "); // It's a Honda
 getBrand.call(audi, "It's an "); // It's an Audi
 ```
+
 ---
 
 ## 5.5. Arrow functions
@@ -346,9 +335,9 @@ A closure is the combination of a function and the lexical environment within wh
 
 Every closure has three scopes:
 
-* local
-* enclosing
-* global
+- local
+- enclosing
+- global
 
 **Caveat**: if the outer function is itself a nested function, access to the outer function's scope includes the enclosing scope of the outer function -- creating a chain of function scopes. We can say that closures have access to all outer function scopes.
 

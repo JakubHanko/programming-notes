@@ -13,31 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Terminal & Vim/Vim.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a10599f9af208211",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documentation/Testing/Sources.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a5db58871de24f5c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Oracle Hacks/IDEA.md",
+                "file": "javascript.md",
                 "mode": "source",
                 "source": false
               }
@@ -109,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Terminal & Vim/Vim.md",
+                "file": "javascript.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Terminal & Vim/Vim.md",
+                "file": "javascript.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Terminal & Vim/Vim.md"
+                "file": "javascript.md"
               }
             }
           }
@@ -173,6 +149,9 @@
   },
   "active": "0967eb2b56fbf866",
   "lastOpenFiles": [
+    "typescript.md",
+    "python.md",
+    "javascript.md",
     "Issues/Issues/NSX/PSBC-3428.md",
     "Documentation/Testing/Sources.md",
     "Oracle Hacks/IDEA.md",
@@ -198,11 +177,8 @@
     "Documentation/Records",
     "PDID.md",
     "Issues/Issues/NSX/NSX-2.md",
-    "Issues/Issues/NSN/727423.md",
     "Issues/Issues/NSX",
-    "Issues/Issues/NSN/730637.md",
     "Issues/Issues/NSN",
-    "Oracle Hacks/Certify.md",
     "Documentation/DB/NSX",
     "Documentation/DB/NSN",
     "media/Issues-Issue-Duty-Issue-Duty-image1.png",

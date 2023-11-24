@@ -7,5 +7,6 @@
   "obsidian-relative-line-numbers",
   "obsidian-editor-shortcuts",
   "obsidian-linter",
-  "dataview"
+  "dataview",
+  "automatic-table-of-contents"
 ]

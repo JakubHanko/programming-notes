@@ -1,36 +1,9 @@
-- [1. Adding TS to existing solution](#1-adding-ts-to-existing-solution)
-  - [1.1. Declaration files](#11-declaration-files)
-    - [1.1.1. Installing third-party types](#111-installing-third-party-types)
-- [2. Basic type usage](#2-basic-type-usage)
-  - [2.1. Primitive types](#21-primitive-types)
-    - [2.1.1. Unknown type](#211-unknown-type)
-    - [2.1.2. Null vs undefined](#212-null-vs-undefined)
-    - [2.1.3. Never type](#213-never-type)
-  - [2.2. Custom types](#22-custom-types)
-  - [2.3. Type aliases](#23-type-aliases)
-  - [2.4. Enumerable types](#24-enumerable-types)
-  - [2.5. Functions](#25-functions)
-    - [2.5.1. Destructuring return types](#251-destructuring-return-types)
-    - [2.5.2. Function expressions](#252-function-expressions)
-  - [2.6. Generics](#26-generics)
-    - [2.6.1. Generic functions](#261-generic-functions)
-    - [2.6.2. Generic constraint](#262-generic-constraint)
-    - [2.6.3. Generic interfaces](#263-generic-interfaces)
-- [3. More complex type usage](#3-more-complex-type-usage)
-  - [3.1. Union types](#31-union-types)
-  - [3.2. Keyof operator](#32-keyof-operator)
-  - [3.3. Typeof operator](#33-typeof-operator)
-  - [3.4. Indexed access types](#34-indexed-access-types)
-  - [3.5. Records](#35-records)
-    - [3.5.1. Record type modifiers](#351-record-type-modifiers)
-  - [3.6. Mapped type](#36-mapped-type)
-- [4. Decorators](#4-decorators)
-  - [4.1. Method decorator](#41-method-decorator)
-  - [4.2. Class decorator](#42-class-decorator)
-  - [4.3. Property decorator](#43-property-decorator)
-  - [4.4. Modules](#44-modules)
-- [5. Sources](#5-sources)
-
+```table-of-contents
+style: nestedList # TOC style (nestedList|inlineFirstLevel)
+maxLevel: 0 # Include headings up to the speficied level
+includeLinks: true # Make headings clickable
+debugInConsole: false # Print debug info in Obsidian console
+```
 
 # 1. Adding TS to existing solution
 
@@ -58,7 +31,7 @@
   * **noEmit** - if set to true, no output is generated. Useful if you want only type checking.
 
 2. Run TS compiler:
-   
+
 ```bash
 tsc
 ```
@@ -68,6 +41,7 @@ This compiles everything in the scope of the project into **.ts** counterparts -
 ---
 
 For a full list of compiler options run:
+
 ```sh
 tsc --all
 ```
@@ -77,9 +51,11 @@ To initialize the TS project, run:
 ```sh
 tsc --init
 ```
+
 which creates `tsconfig.json` with the most commonly used option. The rest of the options are commented out.
 
 To execute the `.js` file in the Node environment, run:
+
 ```sh
 node file.js
 ```
@@ -90,7 +66,6 @@ To execute the `.ts` without compilation, run:
 npx ts-node <.ts file>
 ```
 
-
 ## 1.1. Declaration files
 
 With the declaration files, TypeScript informs the text editor of the requirements for every function that a library has.Declaration files are completely bypassed when it comes to what is rendered in the program.
@@ -99,11 +74,12 @@ With the declaration files, TypeScript informs the text editor of the requiremen
 
 1. Search for **@types** at npmjs.com
 2. Execute the installation in the root of the folder
+
    ```sh
    npm install @types/<lib>
    ```
-3. Type declarations are found in the **node_modules/types** folder in the **.d.ts** files
 
+3. Type declarations are found in the **node_modules/types** folder in the **.d.ts** files
 
 # 2. Basic type usage
 
@@ -232,6 +208,7 @@ function paritySort(...numbers: number[]): {
 
 const { evens, odds } = paritySort(1, 2, 3, 4);
 ```
+
 `evens` and `odds` have to match. `paritySort` is returning a type:
 
 ```typescript
@@ -250,6 +227,7 @@ const { x, odds } = paritySort(1, 2, 3, 4); // Property 'x' does not exist on ty
 ```
 
 ### 2.5.2. Function expressions
+
 Function expressions differ from function declarations in that they can be assigned to variables, used inline, or invoked immediately – an immediately invoked function expression or IIFE. Function expressions can be named or anonymous.
 
 ```typescript
@@ -347,7 +325,6 @@ function getValue<T, U extends keyof T>(source: T, propertyName: U) {
 const value = getValue({ min: 1, max: 200 }, /* you can only put "min" or "max" here*/)
 ```
 
-
 ## 3.3. Typeof operator
 
 typeof is a type operator that you can use in a type context to refer to the type of a variable or property.
@@ -387,7 +364,6 @@ x.number = 1234; // OK
 
 Two generic parameters: possible property name types and possible property types.
 
-
 ```typescript
 interface Query {
     matches(val): boolean;
@@ -415,7 +391,6 @@ type RequiredContactQuery = Required<PartialContactQuery>
 * **Pick** - limits the allowable properties
 * **Required** - all of the wrapped properties are required
 
-
 ## 3.6. Mapped type
 
 ```typescript
@@ -428,15 +403,13 @@ type ContactQuery = {
 }
 ```
 
-```[ ... ]``` is a property indexor syntax. In this case, each Query object has been parametrized by the type of the respective Contact property. We now have full static typing in the query objects.
-
+```[ … ]``` is a property indexor syntax. In this case, each Query object has been parametrized by the type of the respective Contact property. We now have full static typing in the query objects.
 
 # 4. Decorators
 
 Metadata that we can add to our classes, methods and even getter and setter properties. On top of that it allows us to extend them with additional functionality -- adding behaviour to code without actually changing the code itself.
 
 For example adding authorization logic or logging to an existing code. If written manually, it could be seen as a noise with no relation to the responsibilities of the respective class/method.
-
 
 ## 4.1. Method decorator
 
@@ -547,9 +520,8 @@ class A {
 
 * ```target``` - instance of the target object being decorated
 * ```key``` - name of the property being decorated
- 
 
- ## 4.4. Modules
+## 4.4. Modules
 
 Without modules, the contents of the **.js** files are copy-pasted (loaded) into the page source. I.e. the order of the files matters and if we omit one of the files while the other depends on some part of it, our code probably won't work anymore. In case of shadowing, the last file where the object is referenced defines its value/properties.
 
@@ -574,6 +546,6 @@ const x = foo();
 ```
 
 # 5. Sources
+
 * [LinkedIn - Learning TypeScript](https://www.linkedin.com/learning/typescript-essential-training-14687057/learning-typescript?u=42751868)
 * [O'Reilly - The TypeScript Workshop](https://learning.oreilly.com/library/view/the-typescript-workshop/9781838828493/)
-
