@@ -1,0 +1,1131 @@
+/*
+    global variables
+*/
+
+    body
+    {
+        --line-number-height-correction: 0.3px;
+    }
+
+/*
+    rename folder / file
+*/
+
+    .nav-file-title-content.is-being-renamed, .nav-folder-title-content.is-being-renamed
+    {
+        background-color: #61162f;
+        color: #FFF;
+        padding-left: 5px;
+        font-weight: normal;
+    }
+
+/*
+    Remove padding from headers
+*/
+
+    .cm-s-obsidian .cm-line.HyperMD-header
+    {
+        padding-top: 0px;
+    }
+    
+/*
+    bigger gap between header lines
+    ---
+*/
+
+    body.fancy-hr-no-icon .markdown-rendered hr
+    {
+        margin-block-start: 4.5em;
+        margin-block-end: 4.5em;
+    }
+
+/*
+    Short Links Plugin
+    https://github.com/scottwillmoore/obsidian-short-links
+
+    This removes the icons for certain types because we dont really need them.
+*/
+
+    .lucide-hash, .lucide-external-link, .lucide-file
+    {
+        display: none;
+        margin: 0px;
+    }
+
+/*
+    add icon to "Blocks"
+
+    A block is an internal link with the ^ appended to the end
+    ![[MyPage^Block]]
+*/
+
+    .cm-blockid svg
+    {
+        color: #000;
+    }
+
+    .cm-blockid::before
+    {
+        color: #c72060 !important;
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 24 24' fill='%23c72060'%3E%3Cpath d='m21.406 6.086-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035-.028.014-.058.023-.084.04-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01 9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095 18.538 7 12 9.905l-1.308-.581L5.463 7 12 4.095zm1 15.366V11.65l7-3.111v7.812l-7 3.11z'%3E%3C/path%3E%3C/svg%3E");
+        position: relative;
+        top: 2px;
+        margin-left: 0px;
+        padding-right: 5px;
+        background-size: 10px 20px;
+        font-size: 7px;
+    }
+
+/*
+    animation: pulse
+*/
+
+    .anim_pulse
+    {
+        animation: pulse 2s infinite;
+        cursor: pointer;
+    }
+
+    @keyframes pulse
+    {
+        0%
+        {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+        }
+
+        70%
+        {
+            transform: scale(1);
+            box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+
+        100%
+        {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+    }
+
+/*
+    animation: blink
+*/
+
+    .anim_blink
+    {
+        animation: blinker 1s linear infinite;
+    }
+      
+    @keyframes blinker
+    {
+        50%
+        {
+            opacity: 0;
+        }
+    }
+
+/*
+    animation: glow
+*/
+
+    .glow
+    {
+        font-size: 13px;
+        color: #fff;
+        text-align: center;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
+      }
+      
+      @keyframes glow
+      {
+        from {
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+        }
+        to {
+          text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+        }
+      }
+
+/*
+    reverse text
+*/
+
+      .txt-reverse
+      {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+      }
+
+/*
+    dim
+*/
+
+      .txt-dim
+      {
+        filter: brightness(50%);
+      }
+
+/*
+    standout - white background, dark text
+*/
+
+    .txt-highlight
+    {
+        background-color: #FFF;
+        color: #000;
+        padding-left: 4px;
+        padding-right: 4px;
+        font-weight: bold;
+    }
+
+/*
+    run code text output
+*/
+
+    .stdout
+    {
+        font-size: 9pt !important;
+    }
+
+/*
+    Callout Boxes
+
+    fix code block background color inside callout box.
+*/
+
+    .callout-content > .code-styler.code-styler-style-inline .cm-s-obsidian span.cm-inline-code, .code-styler.code-styler-style-inline .markdown-rendered :not(pre) > code:not([class*=blur]), .code-styler.code-styler-style-inline code.code-styler-settings-inline-code
+    {
+        background-color: rgba(14, 14, 14, 0.7) !important;
+        font-size: 8pt !important;
+    }
+
+    .callout-content > pre[class*="language-"]
+    {
+        background-color: rgba(14, 14, 14, 0.7) !important;
+    }
+
+    .callout-content pre[class*='language-console']
+    {
+        background-color: rgba(12, 51, 23, 0.80) !important;
+        font-family: "Office Code Pro D Light" !important;
+        font-size: 8pt !important;
+    }
+
+/*
+    Requires the console markdown plugin
+
+    @plugin     : console markdown plugin
+    @url        : https://github.com/dellermann/obsidian-console
+*/
+
+    .language-console
+    {
+        background-color: rgba(12, 51, 23, 0.80) !important;
+        font-family: "Office Code Pro D Light" !important;
+        font-size: 8pt;
+    }
+
+/*
+    fontawesome icons
+*/
+
+.isc-icon > *:first-child {
+    color: #FFF !important;
+}
+.isc-icon.icon-emoji-icon > *:first-child {
+  /** changes for emoji icons. */
+  color: #FFF !important;
+}
+.isc-icon.isc-fas > *:first-child {
+  /* changes for icons in the specific icon pack */
+  /* (font awesome soild in this example) */
+  color: #FFF !important;
+}
+
+.isc-icon:not(.isc-char-icon) {
+    display: inline-flex;
+    vertical-align: text-top;
+    padding-top: calc(var(--font-text-size) / 8);
+  }
+  .isc-icon > img,
+  .isc-icon > svg {
+    cursor: default !important;
+    height: 1em;
+    width: 1em;
+  }
+  .view-content .mod-cm6 .cm-isc > .isc-icon > img,
+  .view-content .mod-cm6 .cm-isc > .isc-icon > svg {
+    cursor: pointer;
+    color: #FFF !important;
+  }
+  .markdown-source-view .isc-icon > img,
+  .markdown-source-view .isc-icon > svg,
+  .markdown-preview-view .isc-icon > img,
+  .markdown-preview-view .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--font-text-size, var(--editor-font-size, 1em));
+    width: var(--font-text-size, var(--editor-font-size, 1em));
+  }
+  .markdown-source-view .HyperMD-header-1 .isc-icon > img,
+  .markdown-source-view .HyperMD-header-1 .isc-icon > svg,
+  .markdown-preview-view h1 .isc-icon > img,
+  .markdown-preview-view h1 .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--h1-size);
+    width: var(--h1-size);
+  }
+  .markdown-source-view .HyperMD-header-2 .isc-icon > img,
+  .markdown-source-view .HyperMD-header-2 .isc-icon > svg,
+  .markdown-preview-view h2 .isc-icon > img,
+  .markdown-preview-view h2 .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--h2-size);
+    width: var(--h2-size);
+  }
+  .markdown-source-view .HyperMD-header-3 .isc-icon > img,
+  .markdown-source-view .HyperMD-header-3 .isc-icon > svg,
+  .markdown-preview-view h3 .isc-icon > img,
+  .markdown-preview-view h3 .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--h3-size);
+    width: var(--h3-size);
+  }
+  .markdown-source-view .HyperMD-header-4 .isc-icon > img,
+  .markdown-source-view .HyperMD-header-4 .isc-icon > svg,
+  .markdown-preview-view h4 .isc-icon > img,
+  .markdown-preview-view h4 .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--h4-size);
+    width: var(--h4-size);
+  }
+  .markdown-source-view .HyperMD-header-5 .isc-icon > img,
+  .markdown-source-view .HyperMD-header-5 .isc-icon > svg,
+  .markdown-preview-view h5 .isc-icon > img,
+  .markdown-preview-view h5 .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--h5-size);
+    width: var(--h5-size);
+  }
+  .markdown-source-view .HyperMD-header-6 .isc-icon > img,
+  .markdown-source-view .HyperMD-header-6 .isc-icon > svg,
+  .markdown-preview-view h6 .isc-icon > img,
+  .markdown-preview-view h6 .isc-icon > svg {
+    color: #FFF !important;
+    height: var(--h6-size);
+    width: var(--h6-size);
+  }
+  .callout .callout-icon.isc-icon > img,
+  .callout .callout-icon.isc-icon > svg {
+    color: #FFF !important;
+    height: 16px;
+    width: 16px;
+  }
+  .suggestion-container.isc .suggestion-flair {
+    color: #FFF !important;
+    opacity: 1;
+  }
+  .suggestion-container.isc .suggestion-flair > .isc-icon {
+    color: #FFF !important;
+  }
+
+/*
+    Stops plugin from pushing folder arrows down
+
+    @plugin     : folder-notes
+    @ref        : .obsidian\plugins\folder-notes\styles.css
+*/
+
+    .fn-whitespace-stop-collapsing .nav-folder-collapse-indicator
+    {
+        margin-top: 0px !important;
+    }
+
+/*
+    Add separators to file preview list
+*/
+
+    /*
+        @replete Folder Separators v2 tested with Obsidian 1.1.9
+    */
+
+        /*
+            Separator  below nav item
+        */
+
+            .nav-folder-children > [class*=nav-]:has([data-path="Backups"])::after,
+            .nav-folder-children > [class*=nav-]:has([data-path="WSL"])::before,
+            .nav-folder-children > [class*=nav-]:has([data-path="C#"])::after
+            {
+                content:'';
+                display:block;
+                height:1px;
+                width:100%;
+                background:linear-gradient(to right, var(--divider-color), transparent);
+                margin:6px 0 6px -8px;
+            }
+
+        /*
+            separator above Attachments Menu Item
+        */
+
+        .nav-folder-children > [class*=nav-]:has([data-path="Software"])::before
+        {
+            content:'';
+            display:block;
+            height:2px;
+            width:100%;
+            background:linear-gradient(to right, #a30245, transparent);
+            margin:16px 0px 16px -8px;
+        }
+
+        /*
+            separator above Attachments Menu Item
+        */
+
+            .nav-folder-children > [class*=nav-]:has([data-path="Attachments"])::before
+            {
+                content:'';
+                display:block;
+                height:2px;
+                width:100%;
+                background:linear-gradient(to right, #a30245, transparent);
+                margin:16px 0px 16px -8px;
+            }
+
+        /*
+            separator above Attachments Menu Item
+        */
+
+        .nav-folder-children > [class*=nav-]:has([data-path="Users"])::before
+        {
+            content:'';
+            display:block;
+            height:2px;
+            width:100%;
+            background:linear-gradient(to right, #a30245, transparent);
+            margin:16px 0px 16px -8px;
+        }
+
+        /*
+            separator above Attachments Menu Item
+        */
+
+        .nav-folder-children > [class*=nav-]:has([data-path="Projects"])::before
+        {
+            content:'';
+            display:block;
+            height:2px;
+            width:100%;
+            background:linear-gradient(to right, #a30245, transparent);
+            margin:16px 0px 16px -8px;
+        }
+
+        /*
+            separator above Attachments Menu Item
+        */
+
+        .nav-folder-children > [class*=nav-]:has([data-path="User Configs"])::before
+        {
+            content:'';
+            display:block;
+            height:2px;
+            width:100%;
+            background:linear-gradient(to right, #a30245, transparent);
+            margin:16px 0px 16px -8px;
+        }
+
+        /*
+            separator above Windows Menu Item
+        */
+
+            .nav-folder-children > [class*=nav-]:has([data-path="Windows"])::before
+            {
+                content:'';
+                display:block;
+                height:2px;
+                width:100%;
+                background:linear-gradient(to right, #a30245, transparent);
+                margin:16px 0px 16px -8px;
+            }
+
+/*
+    Dark grey box shadow for objects like Dataview (table of contents)
+    and embed blocks
+*/
+
+    .markdown-source-view.mod-cm6 .cm-embed-block:hover
+    {
+        box-shadow: none !important;
+    }
+
+/*
+    table header colors
+*/
+
+    .markdown-rendered thead tr
+    {
+        background-color: #df0257 !important;
+        height: 35px !important;
+    }
+
+    body.table-style-two :is(.markdown-preview-view,.markdown-rendered) th
+    {
+        border-bottom: 2px solid #ff006a !important;
+    }
+
+/*
+    queries
+*/
+
+    :not(pre)>code:not([class*='language-']):not([class*="blur-"])
+    {
+        color: var(--code-styler-inline-colour) !important;
+    }
+
+    .code-styler-header-language-tag-query
+    {
+        display: none !important;
+    }
+
+    .internal-query
+    {
+        margin: 0;
+        border: 0px !important;
+        border-top: 0px !important;
+    }
+
+    .search-result:not(.is-collapsed) .search-result-file-title
+    {
+        font-size: 11pt !important;
+        background-color: #2a2a2a;
+        border-radius: 2px !important;
+        height: 28px !important;
+        vertical-align: middle;
+    }
+
+    .search-results-children .search-result-file-title .tree-item-inner
+    {
+        line-height: unset !important;
+    }
+
+    .search-result > .tree-item-self.is-clickable:hover
+    {
+        background-color: #A30245 !important;
+        cursor: pointer !important;
+    }
+
+    span.search-result-file-matched-text
+    {
+        background: none !important;
+    }
+
+    .search-result-file-matches
+    {
+        box-shadow: none !important;
+    }
+
+    .language-query .code-styler-header-text
+    {
+        padding-left: 15px !important;
+    }
+
+    [class^=code-styler-header-container].language-query::after
+    {
+            display: none !important;
+    }
+
+    /* Hide the query header text */
+    .internal-query-header {
+        display: none !important;
+    }
+
+    .internal-query .search-result-container
+    {
+        padding: 2px 0px 0px 0px !important;
+    }
+
+/*
+    Button Plugin
+*/
+
+    .theme-dark button.button-default
+    {
+        border: 0.5px solid #cb2160;
+        background-color: #262626;
+        padding: 5px 15px;
+        margin: 0px;
+        font-size: 10pt;
+        margin-bottom: 10px;
+    }
+
+    .theme-dark button.button-default:hover
+    {
+        animation: pulse 2s infinite;
+        cursor: pointer;
+    }
+
+/*
+    link embed boxes.
+    Adds padding between outter edge and icon
+*/
+
+    ._lc._sm:not(.xd) .wc
+    {
+        padding: 10px !important;
+        background: #353333;
+    }
+    
+/*
+    link embed boxes.
+    Description + title text color
+*/
+
+    .em > a, .tc > a, .th > a
+    {
+        color: #fa306d;
+    }
+
+/*
+    link embed boxes.
+    smaller description
+*/
+
+    ._lc > .wf > .wt > ._f0 > .td
+    {
+        font-size: 9pt !important;
+    }
+
+/*
+    favicon plugin
+
+    manipulate favicon position
+*/
+
+    .link-favicon
+    {
+        /* margin-top: -6px !important; */
+        height: 20px !important;
+        margin-bottom: 5px !important;
+        margin-right: 7px !important;
+        margin-left: 5px !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+    }
+    
+    /*
+        remove giant gap to the right of favicons
+    */
+
+    .external-link
+    {
+        padding-right: 3px;
+    }
+
+    /*
+        adds more padding between favicon and text
+    */
+
+    body.image-border img
+    {
+        padding-right: 4px !important;
+        padding-left: 5px !important;
+        border: none;
+        filter: drop-shadow(0px 0px 3px rgba(var(--mono-rgb-100),0.2));
+    }
+
+/*
+    Tab Button (Active)
+*/
+
+    .workspace-tab-header.mod-active .workspace-tab-header-inner-title
+    {
+        font-weight: normal;
+    }
+
+    body.transparent-tab-style.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active.mod-active
+    {
+        background-color: #a30245;
+        font-weight: normal;
+    }
+
+/*
+    Vault Statistics Plugin
+
+    Show all
+*/
+
+    .obsidian-vault-statistics--item
+    {
+        display: initial !important;
+    }
+
+/*
+    file tree view > hover selected
+*/
+
+    body:not(.is-grabbing) .tree-item-self.is-clickable.nav-file-title.is-active:hover, body:not(.is-grabbing) .tree-item-self.is-clickable.nav-file-title:hover, .nav-file:not(.is-active):hover .nav-file-title, .nav-folder:hover .nav-folder-content
+    {
+        opacity: 1 !important;
+        background-color: var(--nav-item-background-active) !important;
+    }
+
+/*
+    footnote
+*/
+
+    a.footnote-link
+    {
+        color: #ff3e0e;
+        font-weight: bold;
+    }
+
+/*
+    footnote > back arrow
+*/
+
+    a.footnote-backref
+    {
+        color: #4531ff !important;
+    }
+
+/*
+    footnote > front number
+*/
+
+    body.colorful-ordered-list ol li::marker, body.colorful-ordered-list ol li::before, body.colorful-ordered-list .markdown-source-view.mod-cm6 .HyperMD-list-line.HyperMD-list-line-1.cm-line div.cm-fold-indicator ~ span.cm-formatting.cm-formatting-list-ol, body.colorful-ordered-list .cm-formatting.cm-formatting-list.cm-formatting-list-ol, body.colorful-ordered-list .markdown-source-view.mod-cm6 .HyperMD-list-line.HyperMD-list-line-1.cm-line span.cm-hmd-list-indent ~ span.cm-formatting.cm-formatting-list-ol {
+        color: #ff3e0e;
+        font-weight: bold;
+    }
+
+/*
+    document property tag pills
+*/
+
+    .multi-select-pill
+    {
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 6px;
+        font-size:9pt;
+    }
+
+/*
+    document property that show at the top of each page.
+    Adjusts the line height of each item
+*/
+
+    .metadata-property
+    {
+        line-height: 20px;
+    }
+
+    .workspace-split.mod-root .metadata-container .metadata-add-button
+    {
+        left: 0;
+        background-color: #a9043d;
+        cursor: pointer;
+        color: #FFF !important;
+    }
+
+/*
+    document property that show at the top of each page.
+    Add Property button text pushed down some
+*/
+
+    .metadata-add-button > .text-button-label
+    {
+        padding-top: 4px !important;
+    }
+
+    .metadata-property-key
+    {
+        background-color: #CCC;
+    }
+
+/*
+    document property that show at the top of each page.
+    add slight bg color to left side values
+*/
+
+    .metadata-property-key
+    {
+        background-color: #202020;
+    }
+
+    .metadata-property-key-input
+    {
+        color: #f8146c !important;
+        font-weight: bold !important;
+    }
+
+/*
+    removes <p></p> gap between a link and the bottom of a table
+
+    @plugin     : github embed plugin
+    @url        : https://github.com/MrGVSV/obsidian-github-embeds
+*/
+
+    ._embed-container_tpqtd_1
+    {
+        margin: auto !important;
+    }
+
+/*
+    Remove bold from strong words that are bold
+*/
+
+    *:not(font)>em>strong,
+    *:not(font)>strong>em,
+    .cm-strong.cm-em {
+        font-weight: normal !important;
+        font-family: var(--font-text) !important;
+    }
+
+    span.cm-strong,
+    :not(font)>strong,
+    .cm-s-obsidian .cm-highlight.cm-strong {
+        font-weight: normal !important;
+        font-family: var(--font-text) !important;
+    }
+
+    span.cm-strong, :not(font)>strong, .cm-s-obsidian .cm-highlight.cm-strong
+    {
+        color: var(--accent-strong) !important;
+        font-family: var(--font-text) !important;
+        font-weight: normal;
+    }
+
+/*
+    highlights done with
+        == Text ==
+        *== Text == *
+*/
+
+    body:not(.no-rounded-corners-highlight):not(.all-rounded-corners-highlight) .cm-s-obsidian .cm-widgetBuffer[aria-hidden="true"]+span.cm-highlight:has(+ .cm-widgetBuffer[aria-hidden="true"])
+    {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    body:not(.no-rounded-corners-highlight):not(.all-rounded-corners-highlight) .cm-s-obsidian .cm-widgetBuffer[aria-hidden="true"]+span.cm-highlight:has(+ .cm-widgetBuffer[aria-hidden="true"])
+    {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 10pt;
+    }
+
+/*
+    border shadow for images
+    exclude favicon images
+*/
+
+    body.image-border img:not([class*='link-favicon'])
+    {2023-11-01 22:18:10
+        filter: none;
+        border: 3px solid #424242;
+        padding: 8px !important;
+    }
+
+    .block-language-gist {
+        margin-bottom: -50px;
+    }
+    
+/*
+    Background color for content when clicking a header and going to that section
+*/
+
+    .is-flashing
+    {
+        background-color: #303030 !important;
+    }
+
+    .is-flashing > .cm-header
+    {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+/*
+    trying to straighten out lists •
+*/
+
+    ol
+    {
+        margin-left: -20px;
+    }
+
+    li
+    {
+        list-style: none;
+    }
+    
+    :not([class*='dataview']) > li::before
+    {
+        position: relative;
+        top: -2px;
+        color: #ffb2c5 !important;
+        content: "●";
+        margin-left: -15px;
+        padding-right: 13px;
+        background-size: 10px 20px;
+        font-size: 7px;
+    }
+
+/*
+    change dataview tables
+*/
+
+    ul.dataview.list-view-ul>li:not(.task-list-item)
+    {
+        font-size: 14px;
+        margin-left: 15px;
+    }
+
+    ol.dataview.list-view-ol>li:not(.task-list-item)
+    {
+        font-size: 14px;
+        margin-left: 15px;
+    }
+
+/*
+    change dataview tables font color for links
+
+    color: #ffb2c5 !important;
+*/
+
+    ul.dataview.list-view-ul>li:not(.task-list-item) a
+    {
+        color: #a5a3ff !important;
+    }
+
+    ol.dataview.list-view-ol>li:not(.task-list-item) a
+    {
+        color: #a5a3ff !important;
+    }
+
+    :not(.default-ol-list-marker) .cm-formatting.cm-formatting-list.cm-formatting-list-ol
+    {
+        margin-left: 0px;
+        padding-right: 9px;
+    }
+    
+/*
+    requires columns plugin
+
+    creates a column / box with background color
+*/
+
+    .wiki_col_right
+    {
+        border: 1px solid #494949;
+        padding: 14px;
+        background-color:#2a2a2a;
+    }
+
+/*
+    table styles
+*/
+
+    .left
+    {
+        float: left;
+    }
+
+    .right
+    {
+        float: right;
+    }
+
+    .clear
+    {
+        clear:both;
+    }
+
+    .t_w_30
+    {
+        width: 30%;
+    }
+
+    .t_w_40
+    {
+        width: 40%;
+    }
+
+    .t_w_50
+    {
+        width: 50%;
+    }
+
+/*
+    remove padding from columns plugin
+*/
+
+    .columnParent, div[data-callout="col"].callout > div.callout-content
+    {
+        padding: 0px;
+    }
+
+/*
+    add more padding to the right of a list item
+*/
+
+    .list-bullet
+    {
+        padding-right: 10px;
+    }
+
+/*
+    table > change header link font-size
+*/
+
+    .dataview.table-view-table span a.internal-link
+    {
+        font-size: 8pt;
+    }
+
+/*
+    table > change top category column font size
+*/
+
+    .dataview.table-view-table .table-view-th
+    {
+        font-size: 8pt;
+    }
+    
+    .markdown-rendered.show-indentation-guide
+    {
+        font-size: 11pt;
+    }
+
+/*
+    Code styler plugin
+
+    add padding between the gutter (line numbers) and the actual code for that line.
+*/
+
+    .cm-atom.cm-hmd-codeblock
+    {
+        padding-left: 10px;
+    }
+
+/*
+    Code styler plugin
+
+    add padding between the gutter (line numbers) and the actual code for that line.
+
+    original:       calc(12px + var
+*/
+
+    .code-styler .markdown-source-view .HyperMD-codeblock:has(.code-styler-line-number) {
+        padding-left: calc(20px + var(--language-border-width) + var(--line-number-gutter-width) + var(--line-number-gutter-padding)) !important;
+    }
+
+
+/*
+    Code styler plugin
+
+    add spacing between the > character and the code
+*/
+
+    .console-command
+    {
+        color: var(--code-function);
+        padding-left: 7px;
+    }
+
+/*
+    File Explorer Navigation Tree
+
+    add spacing
+*/
+
+    .nav-file
+    {
+        padding-left: 20px !important;
+    }
+
+/*
+    Code Block and Admonition
+
+    Edit Code Block Icon
+*/
+
+    .markdown-source-view.mod-cm6 .edit-block-button
+    {
+        padding: 0;
+        top: 5px;
+        border-radius: var(--radius-s);
+        right: 10px;
+        opacity: 0.3;
+    }
+
+/*
+    Code Blocks
+    Icon to the far right </> which represents "Edit".
+
+    Can be used with FontAwesome SVG files.
+    Apply the desired FontAwesome icon to a random folder, inspect element to grab the svg path.
+    Paste that svg path inside:
+        https://yoksel.github.io/url-encoder/
+
+    Copy the output in the "Take Encoded" box and paste into the CSS below between %3C and svg%3E
+    
+*/
+
+    .markdown-source-view.mod-cm6 .edit-block-button::before
+    {
+        width: 24px;
+        font-size: 10px;
+        text-align: center;
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M8.707 19.707 18 10.414 13.586 6l-9.293 9.293a1.003 1.003 0 0 0-.263.464L3 21l5.242-1.03c.176-.044.337-.135.465-.263zM21 7.414a2 2 0 0 0 0-2.828L19.414 3a2 2 0 0 0-2.828 0L15 4.586 19.414 9 21 7.414z'%3E%3C/path%3E%3C/svg%3E");
+        margin-left: 0em;
+        padding: 4px;
+        padding-top: 8px;
+    }
+
+/*
+    Code Blocks
+    Icon to the far right </> which represents "Edit".
+
+    same as above, but adjusts opacity.
+*/
+
+    .markdown-source-view.mod-cm6 .edit-block-button
+    {
+        padding: 0;
+        top: 0px;
+        border-radius: var(--radius-s);
+        right: 10px;
+        opacity: 0.7;
+    }
+
+/*
+    Admonition > Warning
+*/
+
+    .callout[data-callout="warning"]
+    {
+        --callout-title-color: var(--callout-type-basic-darkcolor);
+        --callout-color: var(--callout-type-basic-lightcolor);
+        --callout-icon: <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 612 612" enable-background="new 0 0 612 612" xml:space="preserve" fill="#ffffff"><g transform="matrix(15 0 0 15 -5924 -6649.4327)"></g><g transform="matrix(-3.75 0 0 3.75 2295.9997 -3330.35765)"><path stroke="#000000" stroke-miterlimit="10" d="M492.417,955.35h38.25v-62.156l38.25,90.844h-38.25v62.156L492.417,955.35z"></path></g></svg> !important;
+    }
+
+/*
+    Opengate background color
+*/
+
+    .open-gate-view .open-gate-iframe, .open-gate-view .open-gate-webview
+    {
+        background-color: transparent;
+    }
+
+/*
+    code block header text color
+*/
+
+    .code-styler-header-text
+    {
+        color: #777777;
+    }

@@ -1,0 +1,219 @@
+{
+  "main": {
+    "id": "2faed75a88cbcdf0",
+    "type": "split",
+    "children": [
+      {
+        "id": "9fe88c813e7ef6b4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0967eb2b56fbf866",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Terminal & Vim/Vim.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a10599f9af208211",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documentation/Testing/Sources.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a5db58871de24f5c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Oracle Hacks/IDEA.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "41e3630b841c741a",
+    "type": "split",
+    "children": [
+      {
+        "id": "5a8ece9e99074d63",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b1f2175ae5180d84",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a67c236ad802b298",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c11afb42170e7b46",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "40847b3f50447657",
+    "type": "split",
+    "children": [
+      {
+        "id": "26692a857605db54",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e72c5cc080bd26a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Terminal & Vim/Vim.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c5773b7900491164",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Terminal & Vim/Vim.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5b0861a0f9744b8a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "ea1d14d03ce39a86",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Terminal & Vim/Vim.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "omnisearch:Omnisearch": false
+    }
+  },
+  "active": "0967eb2b56fbf866",
+  "lastOpenFiles": [
+    "Issues/Issues/NSX/PSBC-3428.md",
+    "Documentation/Testing/Sources.md",
+    "Oracle Hacks/IDEA.md",
+    "Oracle Hacks/Postman-X-REST.md",
+    "Oracle Hacks/DEVENV.md",
+    "Oracle Hacks/Debugging.md",
+    "Oracle Hacks/General-Oracle-hacks.md",
+    "Issues/Issues/NSX/PSBC-3409.md",
+    "Integration/Git.md",
+    "Terminal & Vim/Vim.md",
+    "Terminal & Vim/Terminal.md",
+    "Documentation/Records/Custom Fields.md",
+    "Issues/Issues/NSX/PSBC-3231.md",
+    "Documentation/DB/NSX/NSX.md",
+    "Documentation/DB/NSN/NSN.md",
+    "Integration/Migration.md",
+    "Integration/Integration.md",
+    "Documentation/DB/DB Schema Training.md",
+    "Documentation/Records/General.md",
+    "Documentation/Records/RSL.md",
+    "Documentation/Testing",
+    "Documentation/NSX.md",
+    "Documentation/Records",
+    "PDID.md",
+    "Issues/Issues/NSX/NSX-2.md",
+    "Issues/Issues/NSN/727423.md",
+    "Issues/Issues/NSX",
+    "Issues/Issues/NSN/730637.md",
+    "Issues/Issues/NSN",
+    "Oracle Hacks/Certify.md",
+    "Documentation/DB/NSX",
+    "Documentation/DB/NSN",
+    "media/Issues-Issue-Duty-Issue-Duty-image1.png",
+    "media/Issues-Issues-Dashboard-Forms-image1.png",
+    "media/Integration-Migration-image1.png",
+    "Documentation/DB",
+    "Documentation/Addresses",
+    "Terminal & Vim",
+    "Oracle Hacks",
+    "NetSuite/media/Issues-Issues-Dashboard-Forms-image1.png",
+    "NetSuite/media/Issues-Issue-Duty-Issue-Duty-image1.png",
+    "NetSuite/media/Integration-Migration-image1.png"
+  ]
+}
