@@ -1,3 +1,7 @@
+---
+number headings: first-level 1, max 6, 1.1
+---
+
 ```table-of-contents
 style: nestedList # TOC style (nestedList|inlineFirstLevel)
 maxLevel: 0 # Include headings up to the speficied level
@@ -5,14 +9,14 @@ includeLinks: true # Make headings clickable
 debugInConsole: false # Print debug info in Obsidian console
 ```
 
-# 1. String interpolation
+# 1 String interpolation
 
 ```javascript
 console.log(`${book.author} wrote ${book.title}`);
 console.log(` I have ${book.isRead ? "read" : "not read"} this book`);
 ```
 
-# 2. For-loop
+# 2 For-loop
 
 ```javascript
 for (const something of everything) {
@@ -20,9 +24,9 @@ for (const something of everything) {
 }
 ```
 
-# 3. let vs var vs const
+# 3 let vs var vs const
 
-## 3.1. Variable hoisting
+## 3.1 Variable hoisting
 
 Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.
 
@@ -41,7 +45,7 @@ console.log(greeter); // greeter is undefined
 greeter = "say hello"
 ```
 
-## 3.2. var
+## 3.2 var
 
 ```var``` is function-scoped when defined in a function and globally scoped when defined outside.
 
@@ -76,7 +80,7 @@ var greeter = "say Hello instead";
 greeter = "Ciao";
 ```
 
-## 3.3. let
+## 3.3 let
 
 ```let``` is block-scoped.
 
@@ -108,17 +112,17 @@ console.log(a); // ReferenceError: Cannot access 'a' before initialization
 let a = 5;
 ```
 
-## 3.4. const
+## 3.4 const
 
 ```const``` just like ```let``` but it cannot be updated. However, in the case of an ```object```, you can update its properties.
 
 ---
 
-## 3.5. Sources
+## 3.5 Sources
 
 - [Var, Let, and Const – What's the Difference?](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/)
 
-# 4. Spread operator
+# 4 Spread operator
 
 Spread syntax can be used when all elements from an object or array need to be included in a new array or object, or should be applied one-by-one in a function call's arguments list. There are three distinct places that accept the spread syntax:
 
@@ -126,7 +130,7 @@ Spread syntax can be used when all elements from an object or array need to be i
 - [Array literals](#array-literals)
 - [Object literals](#object-literals)
 
-## 4.1. Function arguments list
+## 4.1 Function arguments list
 
 ```javascript
 function myFunction(x, y, z) {}
@@ -150,7 +154,7 @@ function foo(bar: string, ...baz: number[]) {}
 foo("bar", 1, 2, 3, 4);
 ```
 
-## 4.2. Array literals
+## 4.2 Array literals
 
 ```javascript
 const parts = ["shoulders", "knees"];
@@ -172,7 +176,7 @@ const fruits = ["apple", "banana", ...(isSummer ? ["watermelon"] : [])];
 // ['apple', 'banana']
 ```
 
-## 4.3. Object literals
+## 4.3 Object literals
 
 ```javascript
 const obj1 = { foo: "bar", x: 42 };
@@ -194,7 +198,7 @@ const fruits = {
 // { apple: 10, banana: 5 }
 ```
 
-# 5. This
+# 5 This
 
 In general, the `this` references the object of which the function is a property. In other words, the `this` references the object that is currently calling the function. For example if a member function of an object is invoked, `this` will refer to that object. 
 
@@ -213,7 +217,7 @@ Function context:
 - [5.4. Indirect invocation](#54-indirect-invocation)
 - [5.5. Arrow functions](#55-arrow-functions)
 
-## 5.1. Function invocation
+## 5.1 Function invocation
 
 `this` is set to the global object.
 
@@ -229,7 +233,7 @@ In the strict mode, JavaScript sets `this` inside a function to `undefined`.
 
 ---
 
-## 5.2. Method invocation
+## 5.2 Method invocation
 
 `this` is set to the object that owns the method.
 
@@ -258,13 +262,13 @@ console.log(brand()); // Honda
 
 ---
 
-## 5.3. Constructor invocation
+## 5.3 Constructor invocation
 
 `this` refers to the newly-created object. However, the constructor has to be invoked by the `new` keyword. Otherwise we are accessing the global object, once again.
 
 ---
 
-## 5.4. Indirect invocation
+## 5.4 Indirect invocation
 
 All functions are instances of the `Function` type which has two methods: `call` and `apply`. Invoking function via either of those is so-called indirect invocation. These two functions allow you to set the `this` inside the function.
 
@@ -286,16 +290,16 @@ getBrand.call(audi, "It's an "); // It's an Audi
 
 ---
 
-## 5.5. Arrow functions
+## 5.5 Arrow functions
 
 In arrow functions, the context is lexical. The arrow function inherits `this` from the outer function where the function is called.
 
 ---
 [Demystifying the JavaScript this Keyword](https://www.javascripttutorial.net/javascript-this/)
 
-# 6. Closures
+# 6 Closures
 
-## 6.1. Lexical scoping
+## 6.1 Lexical scoping
 
 The word lexical refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Nested functions have access to variables declared in their outer scope.
 
@@ -313,7 +317,7 @@ function init() {
 init();
 ```
 
-## 6.2. Closure
+## 6.2 Closure
 
 ```javascript
 function makeAdder(x) {
@@ -357,6 +361,34 @@ function sum(a) {
 }
 
 console.log(sum(1)(2)(3)(4)); // 20
+```
+
+### 6.2.1 Factory pattern
+
+```typescript
+export const orderFactory = (): ((
+  color: string,
+  size: string,
+  qty: number
+) => Order[]) => {
+  let id = 0;
+  return (color: string, size: string, qty: number): Order[] => {
+    const orders = [];
+    for (let i = 0; i < qty; i++) {
+      orders.push({ id: id++, color, size });
+    }
+    return orders;
+  };
+};
+```
+
+`id` is initialized exactly once. `id` is enclosed and modifiable only by the returned function. This allows us to persist its value in-between different returned function invocations.
+
+```typescript
+const createOrder = orderFactory();
+
+const orderOne = createOrder('red', 'M', 4); // ids are 0-3
+const orderTwo = createOrder('blue', 'S', 7); // ids are 4-10
 ```
 
 ---

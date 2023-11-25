@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "javascript.md",
+                "file": "typescript.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "javascript.md",
+                "file": "typescript.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "javascript.md",
+                "file": "typescript.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,16 +125,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "javascript.md"
+                "file": "typescript.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -149,9 +149,9 @@
   },
   "active": "0967eb2b56fbf866",
   "lastOpenFiles": [
+    "javascript.md",
     "typescript.md",
     "python.md",
-    "javascript.md",
     "Issues/Issues/NSX/PSBC-3428.md",
     "Documentation/Testing/Sources.md",
     "Oracle Hacks/IDEA.md",
