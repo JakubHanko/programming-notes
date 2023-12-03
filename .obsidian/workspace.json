@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "typescript.md",
+                "file": "scala.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "typescript.md",
+                "file": "scala.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "typescript.md",
+                "file": "scala.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "typescript.md"
+                "file": "scala.md"
               }
             }
           }
@@ -149,8 +149,8 @@
   },
   "active": "0967eb2b56fbf866",
   "lastOpenFiles": [
-    "javascript.md",
     "typescript.md",
+    "javascript.md",
     "python.md",
     "Issues/Issues/NSX/PSBC-3428.md",
     "Documentation/Testing/Sources.md",
