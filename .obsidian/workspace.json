@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "scala.md",
+                "file": "typescript.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "scala.md",
+                "file": "typescript.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "scala.md",
+                "file": "typescript.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "scala.md"
+                "file": "typescript.md"
               }
             }
           }
@@ -149,8 +149,9 @@
   },
   "active": "0967eb2b56fbf866",
   "lastOpenFiles": [
-    "typescript.md",
+    "scala.md",
     "javascript.md",
+    "typescript.md",
     "python.md",
     "Issues/Issues/NSX/PSBC-3428.md",
     "Documentation/Testing/Sources.md",
@@ -176,7 +177,6 @@
     "Documentation/NSX.md",
     "Documentation/Records",
     "PDID.md",
-    "Issues/Issues/NSX/NSX-2.md",
     "Issues/Issues/NSX",
     "Issues/Issues/NSN",
     "Documentation/DB/NSX",

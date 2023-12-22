@@ -299,6 +299,28 @@ which is more in line with the Haskell-like syntax:
 addTwoNumbers :: Int -> Int -> Int
 ```
 
+### 2.5.6 Type predicates
+
+A user-defined type guard. TypeScript will narrow the type of a variable to the given type in any block guarded by a call to the function.
+
+A predicate takes the form `parameterName is Type`, where `parameterName` must be the name of a parameter from the current function signature.
+
+```typescript
+function isFish(pet: Fish | Bird): pet is Fish {
+	return (pet as Fish).swim !== undefined;
+}
+
+// Both calls to 'swim' and 'fly' are now okay.
+let pet = getSmallPet();
+if (isFish(pet)) {
+	pet.swim();
+} else {
+	pet.fly();
+}
+```
+
+TypeScript knows that in the if branch the pet is Fish. Moreover, it also knows that in the else branch it cannot be Fish so it has to be a Bird.
+
 ## 2.6 Generics
 
 ### 2.6.1 Generic functions
@@ -347,6 +369,23 @@ interface UserContact<TExternalId> {
     name: string;
     externalId: TExternalId;
     loadExternalId(): Task<TExternalId>;
+}
+```
+
+### 2.6.4 Generic defaults
+
+```typescript
+interface Identifiable<Id extends string | number = number> {
+    id: Id;
+}
+
+interface Person extends Identifiable { // id is a number
+    name: string;
+    age: number;
+}
+
+interface Car extends Identifiable<string> { // id is a string
+    make: string;
 }
 ```
 
@@ -481,6 +520,32 @@ type ContactQuery = {
 ```
 
 ```[ … ]``` is a property indexor syntax. In this case, each Query object has been parametrized by the type of the respective Contact property. We now have full static typing in the query objects.
+
+## 3.7 Conditional types
+
+*Conditional types* add the ability to express non-uniform type mappings. A conditional type selects one of two possible types based on a condition expressed as a type relationship test:
+
+```typescript
+T extends U ? X : Y
+```
+
+The type above means when `T` is assignable to `U` the type is `X`, otherwise the type is `Y`
+
+### 3.7.1 Type inference
+
+Within the `extends` clause of a conditional type, it is now possible to have `infer` declarations that introduce a type variable to be inferred. Such inferred type variables may be referenced in the true branch of the conditional type. It is possible to have multiple `infer` locations for the same type variable.
+
+```typescript
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
+```
+
+Multiple candidates for the same type variable in co-variant positions causes a union type to be inferred:
+
+```typescript
+type Foo<T> = T extends { a: infer U; b: infer U } ? U : never;
+type T10 = Foo<{ a: string; b: string }>; // string
+type T11 = Foo<{ a: string; b: number }>; // string | number
+```
 
 # 4 Decorators
 
@@ -750,7 +815,85 @@ class A {
 * ```target``` - instance of the target object being decorated
 * ```key``` - name of the property being decorated
 
-# 5 Modules
+# 5 Metadata
+
+`reflect-metadata` library attaches a special property to our classes that gives us a place to retrieve, store and work with metadata about our class.
+
+It has to be enabled by specifying a `emitDecoratorMetadata` compiler flag.
+
+The API looks as follows:
+
+* `Reflect.defineMetadata(key, value, class, [method])`
+* `Reflect.getMetadata(key, class, [method])`
+* `Reflect.hasMetadata(key, target)`
+
+# 6 Async
+
+Each asynchronous call is basically a promise that, sometime in the future, some task will be done and some result will be acquired.
+
+There are three states:
+
+* pending -- not resolved yet
+* rejected -- we get an error
+* resolved -- we get the actual result out of them
+
+```typescript
+const result = new Promise<T>((resolve, reject) => {
+	// ...
+});
+```
+
+The code above creates a new Promise in pending state. The state is pending until either resolve or reject function is called.
+
+```typescript
+getAuthorData()
+	.then(author => {
+		console.log("Promise is resolved");
+	}).catch(error => {
+		console.log("Promise is rejected");
+	}).finally(() => console.log("We are done"));
+```
+
+Both `then` and `catch` methods return promises as well. Therefore, we can chain them freely.
+
+Asynchronous functions are prefixed with the `async` keyword; `await` suspends the execution until an asynchronous function return promise is fulfilled and unwraps the value from the `Promise` returned.
+
+`async/await` is a syntactic sugar that help us execute promises more easily. Adding an `async` modifier to the function allows us to use the `await` modifier inside said function. `async` makes the function automatically return a promise.
+
+```typescript
+// inside an async function
+
+try {
+	const author = await getAuthorData();
+	console.log("Promise is resolved");
+} catch (error) {
+	console.log("Promise is rejected");
+} finally {
+	console.log("We are done");
+}
+```
+
+## 6.1 Promise.all
+
+This method takes an iterable of Promises and resolves them all. 
+
+Example: 10 different GET requests each taking 1 second. Running them synchronously in a chain of Promises would take 10 seconds. Using `Promise.all` we can initiate all 10 of them first, wait until the server responds, and then get the 10 results taking around 1 second in total.
+
+## 6.2 Promise.allSettled
+
+Variation on `Promise.all`. Use when it's acceptable for some of the promises to resolve successfully and some of them to be rejected.
+
+Unlike `Promise.all` which calls the `then` callback in case all of the promises resolved and `catch` otherwise, `Promise.allSettled` calls `then` with an array of results, each having a status of either being *fulfilled* or *rejected*.
+
+## 6.3 Promise.any
+
+Resolves to the value of the first promise that resolved successfully.
+
+## 6.4 Promise.race
+
+The first promise that resolves or rejects will resolve or reject the race.
+
+# 7 Modules
 
 One file is one module. The following keywords are used to link different modules together:
 * `module` - used to share all of the module
@@ -760,7 +903,7 @@ One file is one module. The following keywords are used to link different module
 * `export` - exports the declared variable or function
 * `import` - imports the specified parts of module
 
-## 5.1 Exports
+## 7.1 Exports
 
 ```typescript
 // utils.ts -- export syntax
@@ -778,7 +921,7 @@ const addTwoNumbers = (a: number, b: number) => a + b;
 module.exports = { PI, addTwoNumbers };
 ```
 
-## 5.2 Imports
+## 7.2 Imports
 
 These can be imported the following way:
 
@@ -802,7 +945,7 @@ Modules that are part of the application are imported via the relative path from
 
 If the same module is imported multiple times, its code is executed only once -- on the first import. Then its exports are given to all of its importers.
 
-### 5.2.1 Default imports
+### 7.2.1 Default imports
 
 Modules can also have default exports that use the **default** keyword. Default exports are imported without brackets. Consider the following examples:
 
@@ -820,7 +963,8 @@ import utils from './utils';
 console.log(utils.addTwoNumbers(3, 4));
 ```
 
-# 6 Sources
+# 8 Sources
 
 * [LinkedIn - Learning TypeScript](https://www.linkedin.com/learning/typescript-essential-training-14687057/learning-typescript?u=42751868)
 * [O'Reilly - The TypeScript Workshop](https://learning.oreilly.com/library/view/the-typescript-workshop/9781838828493/)
+* [TypeScript documentation](https://www.typescriptlang.org/docs/handbook/)
